@@ -1,6 +1,8 @@
 # Personal data files
 dev_log/
+data/
 
+# YouTube data file from Google Takeout (default file-name)
 watch-history.json
 
 # VS Code
