@@ -1,6 +1,7 @@
 # Personal data files
 dev_log/
-data/
+data/*
+!data/customers-10000.csv
 
 # YouTube data file from Google Takeout (default file-name)
 watch-history.json
