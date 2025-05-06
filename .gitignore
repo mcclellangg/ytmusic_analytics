@@ -1,0 +1,7 @@
+# Personal data files
+dev_log/
+
+watch-history.json
+
+# VS Code
+.vscode

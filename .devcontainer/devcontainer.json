@@ -1,0 +1,24 @@
+{
+	"name": "ytmusic_analytics",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	"containerEnv": {
+		"SAMPLE_FILEPATH": "/workspaces/ytmusic_analytics/data/customers-10000.csv",
+		"WORKSPACE_DIR": "/workspaces/ytmusic_analytics"
+	},
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash"
+			}, 
+		"extensions": [
+			"ms-python.python",
+			"ms-toolsai.jupyter",
+			"ms-azuretools.vscode-docker"
+		]}
+	},
+	"postCreateCommand": "pip install --no-cache-dir -r requirements.txt",
+	"remoteUser": "root"
+}

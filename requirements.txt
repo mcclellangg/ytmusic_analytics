@@ -1,0 +1,4 @@
+duckdb
+notebook
+ipykernel
+pandas
