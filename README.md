@@ -7,9 +7,6 @@ YouTube Music Analytics is a Dockerized project designed to extract, process, an
   - [Getting YouTube Music Data](#getting-youtube-music-data-from-google-takeout)
   - [Docker Configuration](#docker-configuration)
   - [Data Extraction](#data-extraction)
-- [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
 
 ## Project Setup
 
