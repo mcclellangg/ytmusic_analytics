@@ -38,7 +38,7 @@ Below will mount your local project directory to the container and start a Bash 
 
 ```bash
 docker run --rm -it \
--v /home/grayson/repos/ytmusic_analytics:/workspaces/ytmusic_analytics \
+-v $(pwd):/workspaces/ytmusic_analytics \
 -w /workspaces/ytmusic_analytics \
 ytmusic_analytics /bin/bash
 ```
@@ -53,7 +53,7 @@ Extract your YouTube Music data (for 2025) from `watch-history.json` into a csv 
     ```bash
     # Run existing notebook in place
     docker run --rm \
-    -v /home/grayson/repos/ytmusic_analytics:/workspaces/ytmusic_analytics \
+    -v $(pwd):/workspaces/ytmusic_analytics \
     -w /workspaces/ytmusic_analytics/notebooks \
     ytmusic_analytics \
     jupyter nbconvert --to notebook --execute --inplace create-ytm-hist-2025.ipynb
@@ -63,7 +63,7 @@ Extract your YouTube Music data (for 2025) from `watch-history.json` into a csv 
     ```bash
     # Run notebook and save output in a new file named create-ytm-hist-2025.nbconvert.ipynb
     docker run --rm \
-    -v /home/grayson/repos/ytmusic_analytics:/workspaces/ytmusic_analytics \
+    -v $(pwd):/workspaces/ytmusic_analytics \
     -w /workspaces/ytmusic_analytics/notebooks \
     ytmusic_analytics \
     jupyter nbconvert --to notebook --execute create-ytm-hist-2025.ipynb
