@@ -19,6 +19,7 @@ YouTube Music Analytics is a Dockerized project designed to extract, process, an
         ![Google Takeout - select data format](img_assets/change_format_to_json.png)
 3. Click `Next Step`, select file delivery options then click `Create export`
 4. Once export is created, download zip file and extract
+#### Update `/data`
 5. Locate `watch-history.json` and add it to the `/data` within this project
     1. `watch-history.json` can be found here in extracted file: `Takeout-20250312T231919Z-001.zip\Takeout\YouTube and YouTube Music\history`
     2. NOTE: `watch-history.json` contains YOUR personal data, this project is designed to ignore files with that name, but git will track it should you include that file then change the name
@@ -44,9 +45,9 @@ ytmusic_analytics /bin/bash
 ```
 
 ### Data Extraction
-Extract your YouTube Music data (for 2025) from `watch-history.json` into a csv file.
+Extract your YouTube Music data (for 2025) into a csv file (See [Step 5](#)).
 
-1. Ensure docker image has been built
+1. Ensure docker image has been built, and `watch-history.json` is in `/data`
 2. Run `create-ytm-hist-2025.nbconvert.ipynb` manually or via one of the below docker commands:
     
     
