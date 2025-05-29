@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  ytmusic_analytics:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    image: ytmusic_analytics
+    volumes:
+      - .:/workspaces/ytmusic_analytics
+    working_dir: /workspaces/ytmusic_analytics/notebooks
+    entrypoint: ["jupyter", "nbconvert", "--to", "notebook", "--execute", "--inplace"]
