@@ -10,3 +10,18 @@ services:
       - .:/workspaces/ytmusic_analytics
     working_dir: /workspaces/ytmusic_analytics/notebooks
     entrypoint: ["jupyter", "nbconvert", "--to", "notebook", "--execute", "--inplace"]
+
+  clean_notebooks:
+    image: ytmusic_analytics
+    volumes:
+      - .:/workspaces/ytmusic_analytics
+    working_dir: /workspaces/ytmusic_analytics/notebooks
+    entrypoint: jupyter
+    command:
+      - nbconvert
+      - "--ClearOutputPreprocessor.enabled=True"
+      - "--ClearMetadataPreprocessor.enabled=True"
+      - "--ClearMetadataPreprocessor.clear_cell_metadata=True"
+      - "--ClearMetadataPreprocessor.clear_notebook_metadata=False"
+      - "--clear-output"
+      - "*.ipynb"

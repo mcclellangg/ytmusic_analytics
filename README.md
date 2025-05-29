@@ -5,8 +5,11 @@ YouTube Music Analytics is a Dockerized project designed to extract, process, an
 ## Table of Contents
 - [Project Setup](#project-setup)
   - [Getting YouTube Music Data](#getting-youtube-music-data-from-google-takeout)
-  - [Docker Configuration](#docker-configuration)
-  - [Data Extraction](#data-extraction)
+  - [Running the container](#running-the-container)
+
+## Prerequisites
+- Docker
+- Docker Compose
 
 ## Project Setup
 
@@ -26,54 +29,25 @@ YouTube Music Analytics is a Dockerized project designed to extract, process, an
     3. Additionally any files within the `data/` directory other than the included sample file `customers-10000.csv` are designed to be ignored
 
 
-### Docker Configuration
-#### Building the Docker Image
-To build the Docker image for the project, run:
+### Running the container
+1. Clone this repository:
+
+ ```bash
+   git clone https://github.com/mcclellangg/ytmusic_analytics.git
+   cd ytmusic_analytics
+   ```
+2. Add your YouTube Music data for 2025 into `data/` (See [Step 5](#))
+
+3. Build and start container to extract data from `watch-history.json` to csv
 
 ```bash
-docker build -t ytmusic_analytics .
+docker compose run --rm ytmusic_analytics create-ytm-hist-2025.ipynb
 ```
 
-#### Running the Container
-Below will mount your local project directory to the container and start a Bash shell inside it:
+4. Remove cell outputs, and metadata from notebooks:
 
 ```bash
-docker run --rm -it \
--v $(pwd):/workspaces/ytmusic_analytics \
--w /workspaces/ytmusic_analytics \
-ytmusic_analytics /bin/bash
+docker compose run --rm clean_notebooks
 ```
 
-### Data Extraction
-Extract your YouTube Music data (for 2025) into a csv file (See [Step 5](#)).
-
-1. Ensure docker image has been built, and `watch-history.json` is in `/data`
-2. Run `create-ytm-hist-2025.nbconvert.ipynb` manually or via one of the below docker commands:
-    
-    
-    ```bash
-    # Run existing notebook in place
-    docker run --rm \
-    -v $(pwd):/workspaces/ytmusic_analytics \
-    -w /workspaces/ytmusic_analytics/notebooks \
-    ytmusic_analytics \
-    jupyter nbconvert --to notebook --execute --inplace create-ytm-hist-2025.ipynb
-    ```
-
-
-    ```bash
-    # Run notebook and save output in a new file named create-ytm-hist-2025.nbconvert.ipynb
-    docker run --rm \
-    -v $(pwd):/workspaces/ytmusic_analytics \
-    -w /workspaces/ytmusic_analytics/notebooks \
-    ytmusic_analytics \
-    jupyter nbconvert --to notebook --execute create-ytm-hist-2025.ipynb
-    ```
-    
-    Both options will create a csv file `ytm_hist_2025.csv` and save it in `/workspaces/ytmusic_analytics/data` with the following columns:
-    `id,song_title,song_artist,listened_ts,youtube_url`
-3. Execute below command to clean up notebook output (if you want to exclude outputs from git tracking):
-    
-    ```bash
-    docker run --rm -v $(pwd):/workspaces/ytmusic_analytics -w /workspaces/ytmusic_analytics/notebooks ytmusic_analytics jupyter nbconvert --ClearOutputPreprocessor.enabled=True --clear-output *.ipynb
-    ```
+Note: This command may not be all encompassing and Git may still track other metadata related to the files.
