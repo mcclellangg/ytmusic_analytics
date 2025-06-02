@@ -14,7 +14,7 @@ YouTube Music Analytics is a Dockerized project designed to extract, process, an
    cd ytmusic_analytics
    ```
 
-2. Add your YouTube Music data for 2025 into `data/` within the root dir of project (See [Step 5](#update-data/))
+2. Add your YouTube Music data for 2025 into `data/` within the root dir of project (See [Step 5](#update-data))
 
 3. Build and start container to extract data from `watch-history.json` to csv
 
